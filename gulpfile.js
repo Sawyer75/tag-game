@@ -1,4 +1,5 @@
 const gulp = require('gulp');
+const ghPages = require('gulp-gh-pages');
 const gulpConnect = require('gulp-connect');
 const gulpUglify = require('gulp-uglify');
 const gulpPug = require('gulp-pug');
@@ -20,7 +21,10 @@ const srcPug = 'src/**/*.pug';
 const srcJS = 'src/**/*.js';
 const srcSVG = 'src/assets/*.svg';
 const srcImages = ['src/**/*.svg', 'src/**/*.jpg', 'src/**/*.gif', 'src/**/*.png'];
-
+gulp.task('deploy', function() {
+    return gulp.src('./dist/**/*')
+        .pipe(ghPages());
+});
 function server() {
     return gulpConnect.server({
         host: '0.0.0.0',
